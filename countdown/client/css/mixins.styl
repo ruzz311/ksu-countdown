@@ -1,0 +1,38 @@
+
+//==================================================================== VARS
+
+ani_speed = 0.5s
+
+img_path( filename )
+  '/images/'+filename
+
+font_path( filename )
+  '/fonts/'+filename
+
+
+//=================================================================== FONTS
+
+// embed_font loads your fonts faster - no muss, no fuss
+embed_font( family_name, filename ) 
+  @font-face
+    font-family: family_name 
+    font-weight: normal
+    font-style: normal
+    src: url( font_path(filename+'.eot') )
+    src: local('☺'), url( font_path(filename+'.woff')) format('woff'), url(font_path(filename+'.ttf')) format('truetype'), url(font_path(filename+'.svg#'+family_name )) format('svg')
+
+// load fonts into font-namespaces
+embed_font( 'RadiolandRegular', 'RADIOLAND-webfont' )
+embed_font( 'RadiolandSlimRegular', 'RADIOLANDSLIM-webfont' )
+
+// Common font-family presets
+fontfam1 = "Helvetica", arial, "Comic Sans MS"
+fontfam2 = "RadiolandRegular", arial, "Comic Sans MS"
+
+
+//=================================================================== COLOR
+
+// solid colors
+red_blood  = #B11616
+red_glow   = #FF3838
+purple_dark = #333366

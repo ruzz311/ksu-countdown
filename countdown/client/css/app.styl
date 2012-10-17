@@ -1,0 +1,87 @@
+// Example Stylus file
+//
+// Stylus docs:  http://learnboost.github.com/stylus/docs/js.html
+// Nib docs:     http://visionmedia.github.com/nib
+
+@import 'nib'
+@import './mixins.styl'
+
+
+// Main
+
+body, html
+  height 100%
+html
+  border 1em solid purple_dark
+  box-sizing border-box
+body
+  font normal 1em sans-serif
+  background linear-gradient(top, #000, #333)
+  text-align center
+  color #fff
+p
+  margin-bottom 1em
+a
+  color #ccc
+h1
+  cursor pointer
+  font-size 2.5em
+  font-weight normal
+  margin 1.5em
+  color #fff
+  text-shadow 1px 1px 2px #777
+  text-transform uppercase
+  img
+    vertical-align middle
+
+#content
+  padding 50px 0
+
+
+#countdown
+  margin 0 auto
+  background linear-gradient(top, #000, #111)
+  border-top 2px solid #333366
+  border-bottom 2px solid #333366
+  overflow hidden
+  box-shadow 0 0 30px rgba(#333366, 0.5)
+  ul
+    display block
+    max-width 600px
+    min-width 300px
+    margin 0 auto
+  li
+    font-size 1.8em
+    display block
+    float left
+    width 23%
+    margin 0
+    padding 1%
+    text-align center
+  .label
+    li
+      text-transform uppercase
+      font-size: 1.4em
+  .val
+    li
+      color red_blood
+      font-family fontfam2
+      font-weight 100
+      font-size 4em
+      line-height 1em
+      padding-top 0.25em
+      text-shadow 0 0 .25em rgba(red_glow, .5)
+      text-indent -0.35em
+
+#schedule
+  clear both
+  display none
+  background-color #fff
+  color #333
+  position fixed
+  width: 400px
+  height: 400px
+  left: 50%
+  top: 50%
+  margin-left -(@width/2)px
+  margin-top -(@height/2)px
