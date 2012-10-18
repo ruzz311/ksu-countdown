@@ -6,6 +6,8 @@
 @import 'nib'
 @import './mixins.styl'
 
+.clearfix
+  clearfix()
 
 // Main
 
@@ -31,14 +33,19 @@ h1
   color #fff
   text-shadow 1px 1px 2px #777
   text-transform uppercase
+  span:nth-child(4)
+    display none
   img
     vertical-align middle
+    height: 112px
+    width: @height
 
 #content
   padding 50px 0
 
 
 #countdown
+  clear:both
   margin 0 auto
   background linear-gradient(top, #000, #111)
   border-top 2px solid #333366
@@ -46,6 +53,8 @@ h1
   overflow hidden
   box-shadow 0 0 30px rgba(#333366, 0.5)
   ul
+    @extend .clearfix
+    clear both
     display block
     max-width 600px
     min-width 300px
@@ -101,3 +110,35 @@ h1
     &:hover
       background linear-gradient(top, #000, #111)
       color #ccccff
+
+
+// Media Queries
+
+@media (max-width: 767px)
+  html
+    min-width 300px
+  h1
+    text-align left
+    min-width 400px
+    text-shadow: 0 0 0 transparent
+    margin: 1.5em 6%
+    span
+      display none
+      &:nth-child(4)
+        display inline
+        font-size 2em
+        line-height 1em
+    img
+      height 2em
+      width 2em
+      float left
+      margin-right: .2em
+  #countdown
+    ul
+      width: 100%
+    li
+      width: 30%
+      &:nth-child(4)
+      &:nth-child(8)
+        display: none
+    
