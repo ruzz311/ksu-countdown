@@ -1,18 +1,19 @@
 {
-  "name": "countdown",
+  "name": "ksu-countdown",
   "description": "An awesome real time application",
   "version": "0.0.1",
   "author": "Me <russell@madsendev.com>",
   "private": true,
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.12"
   },
+  "node":"0.8.12",
+  "subdomain": "ksu",
   "dependencies": {
     "socketstream": "0.3.x",
     "ss-stylus": "0.1.x",
     "ss-hogan": "0.1.x"
   },
-  "subdomain": "ksu",
   "scripts": {
     "start": "app.js"
   }
