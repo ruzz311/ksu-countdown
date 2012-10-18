@@ -65,7 +65,7 @@ exports.target = function(t){
 
 //============================================================== Private Helpers
 
-// update the view
+// update the view's timer elements
 var update = function(){
   now = (new Date()).getTime(), 
   ms  = Math.max(exports.target() - now, 0), 
@@ -74,16 +74,16 @@ var update = function(){
   h   =  m / 60, 
   d   =  h / 24;
   
-  $s.text(pad(s % 60, 2));
-  $m.text(pad(m % 60, 2));
-  $h.text(pad(h % 24, 2));
-  $d.text(pad(d     , 3));
+  $s.text(pad(s % 60));
+  $m.text(pad(m % 60));
+  $h.text(pad(h % 24));
+  $d.text(pad(d ,  3));
   
   t = setTimeout(update, (ms % 1000) + 20);
 }
 
-// pad a number with up to ten zeros
+// pad a number by prepending up to ten zeros
 var pad = function(input, size){
   var p = ['000000000', Math.floor(input)].join('');
-  return p.substring(p.length - Math.min(size, 10));
+  return p.substring(p.length - Math.min(size||2, 10));
 }
