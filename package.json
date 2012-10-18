@@ -7,7 +7,7 @@
   "engines": {
     "node": ">= 0.8.12"
   },
-  "node":"0.8.12",
+  "node":"0.6.17",
   "subdomain": "ksu",
   "dependencies": {
     "socketstream": "0.3.x",
