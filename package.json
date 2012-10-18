@@ -1,7 +1,7 @@
 {
   "name": "ksu-countdown",
   "description": "An awesome real time application",
-  "version": "0.0.1-1",
+  "version": "0.0.1-3",
   "author": "Russell Madsen <russell@madsendev.com>",
   "private": true,
   "engines": {
@@ -11,7 +11,8 @@
   "dependencies": {
     "socketstream": "0.3.x",
     "ss-stylus": "0.1.x",
-    "ss-hogan": "0.1.x"
+    "ss-hogan": "0.1.x",
+    "ical": ">=0.0.1"
   },
   "scripts": {
     "start": "app.js"
