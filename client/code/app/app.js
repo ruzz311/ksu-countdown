@@ -17,6 +17,10 @@ var $countdown = $('#countdown'),
   exports.getSchedule = function(cb){
     ss.rpc('events.getSchedule', {}, cb);
   }
+  
+  exports.updateOpponentTmpl = function(data){
+    $kill.html( ss.tmpl['schedule-opponent'].render({game:data}) );
+  }
 
 
 //========================================================================= INIT
@@ -34,7 +38,7 @@ var $countdown = $('#countdown'),
     emawtime.target(new Date(nextGame.start));
     emawtime.start();
     
-    $kill.html( ss.tmpl['schedule-opponent'].render({game:nextGame}) );
+    exports.updateOpponentTmpl(nextGame);
   });
 
 
@@ -61,4 +65,6 @@ var $countdown = $('#countdown'),
         
     $schedule.addClass('fadeOut').hide();
     emawtime.target( new Date(game.start) );
+    
+    exports.updateOpponentTmpl(game);
   });
