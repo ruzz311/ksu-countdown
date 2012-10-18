@@ -1,13 +1,12 @@
 {
   "name": "ksu-countdown",
   "description": "An awesome real time application",
-  "version": "0.0.1",
-  "author": "Me <russell@madsendev.com>",
+  "version": "0.0.1-1",
+  "author": "Russell Madsen <russell@madsendev.com>",
   "private": true,
   "engines": {
-    "node": ">= 0.8.12"
+    "node": ">= 0.8.x"
   },
-  "node":"0.6.17",
   "subdomain": "ksu",
   "dependencies": {
     "socketstream": "0.3.x",
