@@ -83,13 +83,19 @@ h1
       text-indent -0.35em
 
 #killkillkill
-  padding 4em 4em 0
+  transition: all 1s
+  position absolute
+  bottom 0
+  left 0
+  right 0
   p
+    white-space: nowrap
     text-align center
-    width 100%
-    position absolute
-    bottom 0
-    left 0
+    text-transform: uppercase
+    font-size: 2em
+    line-height: 0em;
+    color: rgba(#fff, .3)
+    
 
 #schedule
   clear both
@@ -113,7 +119,9 @@ h1
 
 
 // Media Queries
-
+@media (max-width: 800px)
+  h1
+    margin: 0 6% 1em
 @media (max-width: 767px)
   html
     min-width 300px
@@ -121,7 +129,6 @@ h1
     text-align left
     min-width 400px
     text-shadow: 0 0 0 transparent
-    margin: 1.5em 6%
     span
       display none
       &:nth-child(4)

@@ -15,18 +15,35 @@ var $countdown = $('#countdown'),
 //============================================================= Public interface
 
   exports.getSchedule = function(cb){
-    ss.rpc('events.getSchedule', {}, cb);
+    ss.rpc('events.getSchedule', {}, cb)
   }
   
   exports.updateOpponentTmpl = function(data){
-    $kill.html( ss.tmpl['schedule-opponent'].render({game:data}) );
+    $kill
+      .hide()
+      .html(ss.tmpl['schedule-opponent'].render({game:data}))
+      .stop().fadeTo(800, 1)
+    /*
+    ss.rpc('logos.getLogo', data, function(){
+      $kill.html( ss.tmpl['schedule-opponent'].render({game:data}) )
+    });
+    */
+  }
+  
+  exports.cleanSummary = function(sum){
+    if (sum.substring(0, 2) === "at"){
+      sum = $.trim( sum.substring(2, sum.length) )
+    }
+    return sum
   }
 
 
 //========================================================================= INIT
   
-  // init & setup modules
+  // setup module with domelemnts to update
   emawtime.domElements($timer.d, $timer.h, $timer.m, $timer.s);
+  
+  emawtime.onEnd(function(){ window.location.reload(); });
   
   // fetch schedule, find the next game, and start the timer
   // update the opponent info so we know who's blood makes the grass grow.
@@ -38,10 +55,13 @@ var $countdown = $('#countdown'),
     emawtime.target(new Date(nextGame.start));
     emawtime.start();
     
+    //Detect home or away and display / update opponent-view
+    nextGame.summary = exports.cleanSummary(nextGame.summary)
     exports.updateOpponentTmpl(nextGame);
+    
   });
 
-
+  
 //============================================================= User interaction
 
 
@@ -63,8 +83,9 @@ var $countdown = $('#countdown'),
     var id = this.id,
         game = _.find(schedule, function(item){ return item.uid === id });
         
-    $schedule.addClass('fadeOut').hide();
+    $schedule.hide();
     emawtime.target( new Date(game.start) );
     
+    game.summary = exports.cleanSummary(game.summary)
     exports.updateOpponentTmpl(game);
   });

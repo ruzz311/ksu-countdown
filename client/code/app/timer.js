@@ -1,6 +1,7 @@
 // yr,mo,day,hr,min,s,ms
 var target = Date.UTC(2014, 9, 18, 16, 0, 0),
     isRunning = false,
+    onEnd = function(){},
     t, now, $s, $m, $h, $d;
 
 
@@ -43,6 +44,14 @@ exports.clear = function(){
 }
 
 /** 
+ * onEnd is run when a timer expires
+**/
+exports.onEnd = function(cb){
+  if(typeof cb === "function")
+    onEnd = cb;
+}
+
+/** 
  * set dom elements used in update
 **/
 exports.domElements = function(d, h, m, s){
@@ -65,6 +74,12 @@ exports.target = function(t){
 
 //============================================================== Private Helpers
 
+// pad a number by prepending up to ten zeros
+var pad = function(input, size){
+  var p = ['000000000', Math.floor(input)].join('');
+  return p.substring(p.length - Math.min(size||2, 10));
+};
+
 // update the view's timer elements
 var update = function(){
   now = (new Date()).getTime(), 
@@ -79,11 +94,8 @@ var update = function(){
   $h.text(pad(h % 24));
   $d.text(pad(d ,  3));
   
-  t = setTimeout(update, (ms % 1000) + 20);
-}
-
-// pad a number by prepending up to ten zeros
-var pad = function(input, size){
-  var p = ['000000000', Math.floor(input)].join('');
-  return p.substring(p.length - Math.min(size||2, 10));
-}
+  if(ms < 1)
+    onEnd(null, {now:now, target:exports.target(), ms:ms});
+  else
+    t = setTimeout(update, (ms % 1000) + 20); 
+};

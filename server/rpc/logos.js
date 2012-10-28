@@ -8,14 +8,17 @@ exports.actions = function(req, res, ss) {
   
   return {
     
-    getLogo: function(){
+    getLogo: function(data){
+      console.log("rpc:getLogo", data)
+      
       var proxy = http.createClient(80, 'google.com')
       var proxyRequest = proxy.request(req.method, req.url, req.headers);
+      
       proxyRequest.on('response', function (proxyResponse) {
         proxyResponse.pipe(res);
       });
+      
       req.pipe(proxyRequest);
-      //res('shit');
     }
     
   }

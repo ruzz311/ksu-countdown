@@ -4,29 +4,51 @@ var http = require('http'),
     ss = require('socketstream'),
     port = process.env.PORT || 3000;
 
-// Define a single-page client called 'main'
-ss.client.define('main', {
-  view: 'app.html',
-  css:  ['libs/reset.css', 'app.styl'],
-  code: ['libs/jquery.min.js', 'libs/underscore.js', 'app'],
-  tmpl: '*'
-});
 
-// Serve this client on the root URL
-ss.http.route('/', function(req, res){
-  res.serveClient('main');
-});
+//============================================================ Define SS clients
+  
+  // main layout
+  ss.client.define('main', {
+    view: 'app.html',
+    css:  ['libs/reset.css', 'app.styl'],
+    code: ['libs/jquery.min.js', 'libs/underscore.js', 'app'],
+    tmpl: '*'
+  });
+  
+  // google varification
+  ss.client.define('googleVarification', {
+    view: 'googlef1c23b1a4fbbe970.html',
+    css:  [],
+    code: [],
+    tmpl: ''
+  });
 
-// Code Formatters / templates
-ss.client.formatters.add(require('ss-stylus'));
-ss.client.templateEngine.use(require('ss-hogan'));
 
-// Minimize and pack assets if you type: SS_ENV=production node app.js
-if (ss.env === 'production') ss.client.packAssets();
+//================================================================== HTTP Router
 
-// Start web server
-var server = http.Server(ss.http.middleware);
-server.listen(port);
+  // Serve clients on the specified routes
+  ss.http.route('/', function(req, res){
+    res.serveClient('main');
+  });
+  
+  //google varification
+  ss.http.route('/googlef1c23b1a4fbbe970.html', function(req, res){
+    res.serveClient('googleVarification');
+  });
 
-// Start SocketStream
-ss.start(server);
+
+//====================================================== Server config and start
+
+  // Code Formatters / templates
+  ss.client.formatters.add(require('ss-stylus'));
+  ss.client.templateEngine.use(require('ss-hogan'));
+
+  // Minimize and pack assets if you type: SS_ENV=production node app.js
+  if (ss.env === 'production') ss.client.packAssets();
+
+  // Start web server
+  var server = http.Server(ss.http.middleware);
+  server.listen(port);
+
+  // Start SocketStream
+  ss.start(server);
