@@ -3,4 +3,4 @@
 # From then on, all changes you make to /server will cause your app to automatically restart
 
 /client/*
-./README.md
+./README.md 
